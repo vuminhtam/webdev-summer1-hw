@@ -39,10 +39,10 @@ public class User {
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-	public String getLasteName() {
+	public String getLastName() {
 		return lastName;
 	}
-	public void setLasteName(String lastName) {
+	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 }

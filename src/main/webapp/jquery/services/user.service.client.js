@@ -3,7 +3,7 @@ function UserServiceClient() {
     this.createUser = createUser;
     this.findAllUsers = findAllUsers;
     // this.findUserById = findUserById;
-    // this.deleteUser = deleteUser;
+    this.deleteUser = deleteUser;
     // this.updateUser = updateUser;
     this.url =
         'http://localhost:8080/api/user';
@@ -17,6 +17,7 @@ function UserServiceClient() {
         });
     }
 
+    //add a user into the database
     function createUser(user) {
         //send to server json input
         //return a promise
@@ -27,5 +28,12 @@ function UserServiceClient() {
                 'content-type': 'application/json' //notify the server to know the post file is json
             }
         });
+    }
+
+    //delete a user in database by ID
+    function deleteUser(userID) {
+        return fetch(self.url
+            + '/' + userID, {//SEND THE USER ID TO DELETE
+            method: 'delete'})
     }
 }
