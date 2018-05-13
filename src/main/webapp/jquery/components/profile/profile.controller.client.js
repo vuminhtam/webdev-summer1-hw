@@ -25,7 +25,6 @@
 
     //render the user profile
     function renderUser(user) {
-        console.log(user);
         $userName.val(user.username);
         $firstName.val(user.firstName);
         $lastName.val(user.lastName);

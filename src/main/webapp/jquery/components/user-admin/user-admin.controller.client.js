@@ -1,15 +1,18 @@
 //the client controller class
 (function (){
-    jQuery(main); //call after content loaded
+
     var userService = new UserServiceClient(); //a "model" for client
 
     var body;
     var tempRow;
 
+    var $removeBtn, $editBtn, $createBtn;
+    jQuery(main); //call after content loaded
+
     function main() {
         tempRow = $('.template');
         body = $('tbody');
-        $('#createUser').click(createUser);
+        $createBtn = $('#createUser').click(createUser);
         //tempRow.find('.deleteUser').click(deleteUser);
         findAllUsers();
     }
@@ -54,8 +57,8 @@
             body.append(cloneTemplate);
 
             //add delete button click listener
-            cloneTemplate.find('.deleteBtn').click(deleteUser);
-            cloneTemplate.find('.editBtn').click(editUser);
+            $removeBtn = cloneTemplate.find('.deleteBtn').click(deleteUser);
+            $editBtn = cloneTemplate.find('.editBtn').click(updateUser);
 
         }
     }
@@ -73,8 +76,8 @@
             .then(findAllUsers);
     }
 
-    function editUser(event) {
-        console.log('edit user');
+    function updateUser(event) {
+        console.log('edit user by admin');
         //get info = grab username att in button
 
     }
