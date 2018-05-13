@@ -1,9 +1,10 @@
 //the client controller class
 (function (){
     jQuery(main); //call after content loaded
+    var userService = new UserServiceClient(); //a "model" for client
+
     var body;
     var tempRow;
-    var userService = new UserServiceClient(); //a "model" for client
 
     function main() {
         tempRow = $('.template');

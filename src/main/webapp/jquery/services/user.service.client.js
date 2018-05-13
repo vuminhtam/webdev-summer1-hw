@@ -1,10 +1,10 @@
 //a JS class: direct communicate with the server as a client
 function UserServiceClient() {
-    this.createUser = createUser;
     this.findAllUsers = findAllUsers;
-    // this.findUserById = findUserById;
+    this.createUser = createUser;
     this.deleteUser = deleteUser;
-    // this.updateUser = updateUser;
+    this.findUserByID = findUserByID;
+    this.updateUser = updateUser;
     this.url =
         'http://localhost:8080/api/user';
     var self = this;
@@ -35,5 +35,31 @@ function UserServiceClient() {
         return fetch(self.url
             + '/' + userID, {//SEND THE USER ID TO DELETE
             method: 'delete'})
+    }
+
+    //return a user info by their id
+    function findUserByID(userID) {
+        return fetch(self.url + '/' + userID)//default = get
+            .then(function(response) {
+                return response.json();
+            });
+    }
+
+    //update the info of the user
+    function updateUser(userID, user) {
+        return fetch(self.url + '/' + userID, { //updateByUserID
+            method: 'put',
+            body: JSON.stringify(user), //convert json to string
+            headers: {
+                'content-type': 'application/json' //notify the server to know the post file is json
+            }})
+            .then(function(response) {
+                if(response.bodyUsed) {
+                    return response.json();
+                }
+                else {
+                    return null;
+                }
+        });
     }
 }
