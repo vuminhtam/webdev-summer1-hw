@@ -5,8 +5,10 @@ function UserServiceClient() {
     this.deleteUser = deleteUser;
     this.findUserByID = findUserByID;
     this.updateUser = updateUser;
-    this.url =
-        'http://localhost:8080/api/user';
+    this.register = registerUser;
+
+    this.registerURL = 'http://localhost:8080/api/register';
+    this.url = 'http://localhost:8080/api/user';
     var self = this;
 
     //return all users info in the database
@@ -61,5 +63,18 @@ function UserServiceClient() {
                     return null;
                 }
         });
+    }
+
+
+    //register a user
+    function registerUser(username, password) {
+        return fetch(self.registerURL, {
+            method: 'post',
+            body: JSON.stringify(
+                {username: username, password: password}
+            ),
+            headers: {
+                'content-type': 'application/json'
+            }});
     }
 }
