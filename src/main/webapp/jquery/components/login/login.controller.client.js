@@ -25,7 +25,7 @@
     function handleResponse(reponse) {
         if(reponse.status === 200) {
             //var logInUser = userService.findUserByID(432);
-            window.location.href = "../profile/profile.template.client.html";
+            window.location.href = "../profile/profile.template.client.html?username=" + $usernameFld.val();
         }
         else {
             alert("Invalid credentials!");
