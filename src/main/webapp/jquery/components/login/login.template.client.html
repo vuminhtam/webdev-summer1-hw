@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <title>Log in</title>
 
-    <link href="login.style.client.css" rel="stylesheet" />
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <!------ https://bootsnipp.com/snippets/featured/mix-amp-match-register ---------->
 
+    <link href="login.style.client.css" rel="stylesheet" />
+    <script src="../../services/user.service.client.js"></script>
+    <script src="login.controller.client.js"></script>
 </head>
 <body>
 
@@ -24,7 +26,7 @@
             <input type="password" class="form-control" id="passwordFld" placeholder="Password" required/>
 
             <button id="loginBtn" class="btn btn-lg btn-primary btn-block" type="button">Login</button>
-            <a href="../register/register.template.client.html">Create an account</a>
+            <a href="../register/register.template.client.html" target="_blank">Create an account</a>
         </form>
     </div>
 </div>

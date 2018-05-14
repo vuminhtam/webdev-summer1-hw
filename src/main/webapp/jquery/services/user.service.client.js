@@ -9,7 +9,9 @@ function UserServiceClient() {
     this.register = register;
     this.login = login;
 
+    this.profileURL = 'http://localhost:8080/api/profile'
     this.findUsernameURL = 'http://localhost:8080/api/findByUsername';
+    this.loginURL = 'http://localhost:8080/api/login';
     this.url = 'http://localhost:8080/api/user';
     var self = this;
 
@@ -75,24 +77,33 @@ function UserServiceClient() {
     }
 
     //update the info of the user
-    function updateUser(userID, user) {
+    function updateUser(user) {
         console.log("update user");
-        return fetch(self.url + '/' + userID, { //updateByUserID
+        return fetch(self.profileURL, { //updateByUserID
             method: 'put',
             body: JSON.stringify(user), //convert json to string
             headers: {
                 'content-type': 'application/json' //notify the server to know the post file is json
             }})
-            .then(function(response) {
-                if(response.bodyUsed) {
-                    return response.json();
-                }
-                else {
-                    return null;
-                }
-        });
+            // .then(function(response) {
+            //     if(response.bodyUsed) {
+            //         return response.json();
+            //     }
+            //     else {
+            //         return null;
+            //     }})
+            ;
     }
 
     //verify log in credentials and route to user profile page
-    
+    function login(username, password) {
+        return fetch(self.loginURL, {
+            method: 'post',
+            body: JSON.stringify(
+                {username: username, password: password}
+            ),
+            headers: {
+                'content-type': 'application/json'
+            }});
+    }
 }

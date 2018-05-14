@@ -32,6 +32,18 @@ public class UserService {
 		return (List<User>) repository.findUserByUsername(username);  
     }  
 	
+	 @PostMapping("/api/login")  
+	 public User login(@RequestBody User user, HttpSession session) {
+		 List<User> query = (List<User>) repository.findUserByCredentials(user.getUsername(), user.getPassword());
+		 if(query.size() == 0) {
+			 throw new IllegalArgumentException(user.getUsername() + " does not exist!");
+		 }
+		 else {
+			 session.setAttribute("user", user);
+			 return query.get(0);
+		 }
+	 } 
+	
 	@PostMapping("/api/register")
 	public User register(@RequestBody User user, HttpSession session) {
 		List<User> query = this.findUserByUsername(user.getUsername());
@@ -67,17 +79,29 @@ public class UserService {
 		}
 	}
 	
-	@PutMapping("api/user/{userID}")
-	public User updateUser(@PathVariable("userID") int userID, @RequestBody User newUser) {
-		User retrieve = this.findUserByID(userID);
+	@PutMapping("api/profile")
+	public User updateUser(@RequestBody User newUser,
+			HttpSession session) {
+//		if(session.getAttribute("user") == null)  {
+//			throw new IllegalArgumentException("Not logged in user.");
+//		} else 
+			if (((User) session.getAttribute("user")).getId() != newUser.getId()) {
+			throw new IllegalArgumentException("Interal Error: not legit user");
+		}
+		User retrieve = this.findUserByID(newUser.getId());
 		if(retrieve.equals(null)) {
-			return null; //cannot find the user id
+			throw new IllegalArgumentException("Interal Error: cannot find user");
 		}
 		else {
 			//update the user by id
 			retrieve.setFirstName(newUser.getFirstName());
 			retrieve.setLastName(newUser.getLastName());
+			retrieve.setEmail(newUser.getEmail());
+			retrieve.setPhone(newUser.getPhone());
+			retrieve.setRole(newUser.getRole());
+			retrieve.setDOB(newUser.getDOB());
 			repository.save(retrieve);
+			session.setAttribute("user", retrieve);
 			return retrieve;//return the modified user
 		}
 	}

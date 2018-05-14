@@ -11,6 +11,23 @@
     }
 
     function login() {
-        userService.login();
+        console.log("log in");
+        if($usernameFld.val() === ""
+            && $passwordFld.val() === "") {
+            alert("username and password required!");
+        }
+        else {
+            userService.login($usernameFld.val(), $passwordFld.val())
+                .then(handleResponse);
+        }
+    }
+
+    function handleResponse(reponse) {
+        if(reponse.status === 200) {
+            alert("Route to login!");
+        }
+        else {
+            alert("Invalid credentials!");
+        }
     }
 })();

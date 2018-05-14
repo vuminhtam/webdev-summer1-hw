@@ -1,18 +1,25 @@
 (function () {
     $(init);
     var userService = new UserServiceClient();
-    var $firstName;
-    var $lastName;
-    var $userName;
+    var $firstName, $lastName, $userName, $role, $email;
+    var $phone;
+    var $DOB;
     var $password;
     var $updateBtn;
+    //var $success;
+    var testID = 432;
 
     function init() {
-        findUserByID(262);
+        findUserByID(testID);
+        //$success = $("#alert").attr('hidden', true);
         $firstName = $("#firstName");//fetch $ the element whose id # is firstName
+        $email = $("#email");
+        $phone = $("#phone");
         $lastName = $("#lastName");
         $userName = $("#userName");
         $password = $("#inputPassword");
+        $role = $("#role");
+        $DOB = $("#DOB");
         $updateBtn = $("#updateBtn");
         $updateBtn.click(updateUser);
     }
@@ -29,36 +36,55 @@
         $firstName.val(user.firstName);
         $lastName.val(user.lastName);
         $password.val(user.password);
+        $phone.val(user.phone);
+        $email.val(user.email);
+        $role.val(user.role);
+        $DOB.val(user.dob);
     }
 
     //update the user with the current input when update button clicked
     function updateUser() {
         var newUser = {
+            id: testID,
             firstName: $firstName.val(),
-            lastName: $lastName.val()
+            lastName: $lastName.val(),
+            phone: $phone.val(),
+            email: $email.val(),
+            role: $role.val(),
+            dob: $DOB.val()
         };
         userService
-            .updateUser(272, newUser)
-            .then(confirmUserInfo(272));
-            //.then(success);
+            .updateUser(newUser)
+            .then(handleResponse);
     }
+    //
+    // function confirmUserInfo(userID) {
+    //     userService.findUserByID(userID)
+    //         .then(outputUserInfo);
+    // }
+    //
+    // function outputUserInfo(user) {
+    //     alert('first name ' + user.firstName +
+    //         ' \nlast name ' + user.lastName);
+    // }
+    //
+    // //inform successfully update user info
+    // function success(response) {
+    //     if(response === null) {
+    //         alert('cannot update.');
+    //     }
+    //     else {
+    //         $('.alert').show();
+    //         alert('successfully updated user!');
+    //     }
+    // }
 
-    function confirmUserInfo(userID) {
-        userService.findUserByID(userID).then(outputUserInfo);
-    }
-
-    function outputUserInfo(user) {
-        alert('first name ' + user.firstName +
-            ' \nlast name ' + user.lastName);
-    }
-
-    //inform successfully update user info
-    function success(response) {
-        if(response === null) {
-            alert('cannot update.');
+    function handleResponse(reponse) {
+        if(reponse.status === 200) {
+            alert("Successfully update changes!");
         }
         else {
-            alert('successfully updated user!');
+            alert("Fail to update.");
         }
     }
 
