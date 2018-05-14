@@ -4,6 +4,7 @@
     var $dobFld;
     var $roleFld;
     var $registerBtn;
+    var userJS;
     var userService = new UserServiceClient();
     $(main);
 
@@ -21,13 +22,73 @@
         $registerBtn = $('#createBtn').click(register);
     }
 
+    // function register() {
+    //     if($usernameFld.val() != ""
+    //         && $passwordFld.val() != ""
+    //         && $verifyPasswordFld.val() != "") {
+    //         if($passwordFld.val() === $verifyPasswordFld.val()) {
+    //             console.log('pw match.');
+    //             userService
+    //                 .findUserByUsername($usernameFld.val(), $passwordFld.val())
+    //                 .then(handleQuery);
+    //         }
+    //         else {
+    //             alert("Password and Confirm Password does not match.");
+    //         }
+    //     }
+    //     else {
+    //         alert("Require username, password, and confirm password!");
+    //     }
+    // }
+
     function register() {
-        console.log('register');
-        if($passwordFld === $verifyPasswordFld) {
-            userService.register($usernameFld, $passwordFld);
+        userJS = {
+            username: $usernameFld.val(),
+            password: $passwordFld.val(),
+            firstName: $firstNameFld.val(),
+            lastName: $lastNameFld.val(),
+            email: $emailFld.val(),
+            phone: $phoneFld.val(),
+            DOB: $dobFld.val(),
+            role: $roleFld.val()};
+
+        if($usernameFld.val() != ""
+            && $passwordFld.val() != ""
+            && $verifyPasswordFld.val() != "") {
+            if($passwordFld.val() === $verifyPasswordFld.val()) {
+                console.log('pw match!!');
+                userService.register(userJS)
+                    .then(handleResponse);
+            }
+            else {
+                alert("Password and Confirm Password does not match.");
+            }
         }
         else {
-            alert("Password and Confirm Password does not match.");
+            alert("Require username, password, and confirm password!");
+        }
+    }
+
+
+    //
+    // function handleQuery(usernameQuery) {
+    //     if(usernameQuery.length === 0) {
+    //         //create user in database
+    //         userService.createUser(userJS);
+    //         alert("Successfully signed up!");
+    //     }
+    //     else {
+    //         alert("Username already exists!");
+    //     }
+    // }
+
+
+    function handleResponse(reponse) {
+        if(reponse.status === 200) {
+            alert("Successfully signed up!");
+        }
+        else {
+            alert("Username already exists!");
         }
     }
 })();

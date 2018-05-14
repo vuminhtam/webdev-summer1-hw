@@ -24,13 +24,21 @@
         var password = $('#passwordFld').val();
         var firstName = $('#firstNameFld').val();
         var lastName = $('#lastNameFld').val();
+        var email = $('#emailFld').val();
+        var phone = $('#phoneFld').val();
+        var birthDate = $('#birthDateFld').val;
+        var role = $('#roleFld').val();
 
         //build a user json object
         var userJS = {
             username: username,
             password: password,
             firstName: firstName,
-            lastName: lastName
+            lastName: lastName,
+            email: email,
+            phone: phone,
+            birthDate: birthDate,
+            role: role
         };
 
         userService
@@ -54,6 +62,10 @@
             cloneTemplate.find('.password').html(formatPW(user.password));
             cloneTemplate.find('.firstName').html(user.firstName);
             cloneTemplate.find('.lastName').html(user.lastName);
+            cloneTemplate.find('.email').html(user.getEmail());
+            cloneTemplate.find('.phone').html(user.getPhone());
+            cloneTemplate.find('.birthdate').html(user.getDOB());
+            cloneTemplate.find('.role').html(user.getRole());
             body.append(cloneTemplate);
 
             //add delete button click listener

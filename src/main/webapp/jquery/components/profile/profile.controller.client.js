@@ -8,7 +8,7 @@
     var $updateBtn;
 
     function init() {
-        findUserByID(272);
+        findUserByID(262);
         $firstName = $("#firstName");//fetch $ the element whose id # is firstName
         $lastName = $("#lastName");
         $userName = $("#userName");

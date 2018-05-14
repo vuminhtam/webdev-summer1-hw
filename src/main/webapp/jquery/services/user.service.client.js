@@ -5,9 +5,11 @@ function UserServiceClient() {
     this.deleteUser = deleteUser;
     this.findUserByID = findUserByID;
     this.updateUser = updateUser;
-    this.register = registerUser;
+    this.findUserByUsername = findUserByUsername;
+    this.register = register;
+    this.login = login;
 
-    this.registerURL = 'http://localhost:8080/api/register';
+    this.findUsernameURL = 'http://localhost:8080/api/findByUsername';
     this.url = 'http://localhost:8080/api/user';
     var self = this;
 
@@ -19,8 +21,32 @@ function UserServiceClient() {
         });
     }
 
+    //look up a user by username
+    function findUserByUsername(username) {
+        //verify username not exisits
+        return fetch(self.findUsernameURL + '/' + username)
+            .then(function(response) {
+                return response.json();
+            });
+    }
+
+    //register a user
+    function register(user) {
+        console.log("current register");
+        var registerURL = "http://localhost:8080/api/register";
+        return fetch(registerURL, {
+            method: 'post',
+            body: JSON.stringify(user), //convert json to string
+            headers: {
+                'content-type': 'application/json' //notify the server to know the post file is json
+            }
+        });
+    }
+
     //add a user into the database
     function createUser(user) {
+        console.log("create user");
+        console.log(JSON.stringify(user));
         //send to server json input
         //return a promise
         return fetch(self.url, {
@@ -34,6 +60,7 @@ function UserServiceClient() {
 
     //delete a user in database by ID
     function deleteUser(userID) {
+        console.log("delete user");
         return fetch(self.url
             + '/' + userID, {//SEND THE USER ID TO DELETE
             method: 'delete'})
@@ -49,6 +76,7 @@ function UserServiceClient() {
 
     //update the info of the user
     function updateUser(userID, user) {
+        console.log("update user");
         return fetch(self.url + '/' + userID, { //updateByUserID
             method: 'put',
             body: JSON.stringify(user), //convert json to string
@@ -65,16 +93,6 @@ function UserServiceClient() {
         });
     }
 
-
-    //register a user
-    function registerUser(username, password) {
-        return fetch(self.registerURL, {
-            method: 'post',
-            body: JSON.stringify(
-                {username: username, password: password}
-            ),
-            headers: {
-                'content-type': 'application/json'
-            }});
-    }
+    //verify log in credentials and route to user profile page
+    
 }
