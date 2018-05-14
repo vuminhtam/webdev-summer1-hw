@@ -12,7 +12,8 @@
 
     function init() {
         curUsername = getUrlVars()["username"];
-        findUserByID(testID);
+        //findUserByID(testID);
+        findUserByUsername(curUsername);
         //$success = $("#alert").attr('hidden', true);
         $firstName = $("#firstName");//fetch $ the element whose id # is firstName
         $email = $("#email");
@@ -33,8 +34,15 @@
             .then(renderUser);
     }
 
+    //get the info of user from database
+    function findUserByUsername(username) {
+        userService.findUserByUsername(username)
+            .then(renderUser);
+    }
+
     //render the user profile
     function renderUser(user) {
+        var firstname = user.firstName;
         $userName.val(user.username);
         $firstName.val(user.firstName);
         $lastName.val(user.lastName);

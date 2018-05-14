@@ -28,21 +28,27 @@ public class UserService {
 	}
 	
 	@GetMapping("/api/findByUsername/{username}")  
-    public List<User> findUserByUsername(@PathVariable("username") String username) {  
-		return (List<User>) repository.findUserByUsername(username);  
+    public User findUserByUsername(@PathVariable("username") String username) throws IllegalArgumentException { 
+		List<User> query = (List<User>) repository.findUserByUsername(username);
+		if(query.size() != 0) {
+			return query.get(0);
+		}
+		else {
+			throw new IllegalArgumentException(username + " already exisits!");
+		} 
     }  
 	
 	
 	@PostMapping("/api/register")
 	public User register(@RequestBody User user, HttpSession session) {
-		List<User> query = this.findUserByUsername(user.getUsername());
-		if(query.size() == 0) {
+		try {
+			this.findUserByUsername(user.getUsername());
 			this.createUser(user);
 			session.setAttribute("user", user);
 			return user;
 		}
-		else {
-			throw new IllegalArgumentException(user.getUsername() + " already exisits!");
+		catch (IllegalArgumentException e) {
+			throw new IllegalArgumentException(e.getMessage() + " Cannot register");
 		}
 	}
 

@@ -27,7 +27,6 @@ function UserServiceClient() {
 
     //look up a user by username
     function findUserByUsername(username) {
-        //verify username not exisits
         return fetch(self.findUsernameURL + '/' + username)
             .then(function(response) {
                 return response.json();
