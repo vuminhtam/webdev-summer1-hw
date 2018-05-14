@@ -8,10 +8,12 @@ function UserServiceClient() {
     this.findUserByUsername = findUserByUsername;
     this.register = register;
     this.login = login;
+    this.logout = logout;
 
-    this.profileURL = 'http://localhost:8080/api/profile'
+    this.profileURL = 'http://localhost:8080/api/profile';
     this.findUsernameURL = 'http://localhost:8080/api/findByUsername';
     this.loginURL = 'http://localhost:8080/api/login';
+    this.logoutURL = 'http://localhost:8080/api/logout';
     this.url = 'http://localhost:8080/api/user';
     var self = this;
 
@@ -102,6 +104,14 @@ function UserServiceClient() {
             body: JSON.stringify(
                 {username: username, password: password}
             ),
+            headers: {
+                'content-type': 'application/json'
+            }});
+    }
+
+    function logout() {
+        return fetch(self.logoutURL, {
+            method: 'post',
             headers: {
                 'content-type': 'application/json'
             }});

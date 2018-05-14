@@ -62,10 +62,10 @@
             cloneTemplate.find('.password').html(formatPW(user.password));
             cloneTemplate.find('.firstName').html(user.firstName);
             cloneTemplate.find('.lastName').html(user.lastName);
-            cloneTemplate.find('.email').html(user.getEmail());
-            cloneTemplate.find('.phone').html(user.getPhone());
-            cloneTemplate.find('.birthdate').html(user.getDOB());
-            cloneTemplate.find('.role').html(user.getRole());
+            cloneTemplate.find('.email').html(user.email);
+            cloneTemplate.find('.phone').html(user.phone);
+            cloneTemplate.find('.birthdate').html(user.dob);
+            cloneTemplate.find('.role').html(user.role);
             body.append(cloneTemplate);
 
             //add delete button click listener

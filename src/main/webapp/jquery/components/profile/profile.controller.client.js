@@ -5,7 +5,7 @@
     var $phone;
     var $DOB;
     var $password;
-    var $updateBtn;
+    var $updateBtn, $logoutBtn;
     //var $success;
     var testID = 432;
 
@@ -20,8 +20,9 @@
         $password = $("#inputPassword");
         $role = $("#role");
         $DOB = $("#DOB");
-        $updateBtn = $("#updateBtn");
-        $updateBtn.click(updateUser);
+
+        $updateBtn = $("#updateBtn").click(updateUser);
+        $logoutBtn = $("#logoutBtn").click(logout)
     }
 
     //get the info of user from database
@@ -86,6 +87,16 @@
         else {
             alert("Fail to update.");
         }
+    }
+
+    function logout() {
+        userService.logout()
+            .then(function(response) {
+                if(response.status == 200) {
+                    window.location.href = "../login/login.template.client.html";
+                }
+            });
+
     }
 
 })();

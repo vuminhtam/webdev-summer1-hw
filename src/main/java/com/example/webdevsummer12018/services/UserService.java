@@ -32,17 +32,6 @@ public class UserService {
 		return (List<User>) repository.findUserByUsername(username);  
     }  
 	
-	 @PostMapping("/api/login")  
-	 public User login(@RequestBody User user, HttpSession session) {
-		 List<User> query = (List<User>) repository.findUserByCredentials(user.getUsername(), user.getPassword());
-		 if(query.size() == 0) {
-			 throw new IllegalArgumentException(user.getUsername() + " does not exist!");
-		 }
-		 else {
-			 session.setAttribute("user", user);
-			 return query.get(0);
-		 }
-	 } 
 	
 	@PostMapping("/api/register")
 	public User register(@RequestBody User user, HttpSession session) {
@@ -79,6 +68,7 @@ public class UserService {
 		}
 	}
 	
+	
 	@PutMapping("api/profile")
 	public User updateUser(@RequestBody User newUser,
 			HttpSession session) {
@@ -106,4 +96,21 @@ public class UserService {
 		}
 	}
 	
+	@PostMapping("/api/login")  
+	 public User login(@RequestBody User user, HttpSession session) {
+		 List<User> query = (List<User>) repository.findUserByCredentials(user.getUsername(), user.getPassword());
+		 if(query.size() == 0) {
+			 throw new IllegalArgumentException(user.getUsername() + " does not exist!");
+		 }
+		 else {
+			 session.setAttribute("user", user);
+			 return query.get(0);
+		 }
+	 } 
+	
+	@PostMapping("/api/logout")  
+	 public HttpSession logout(HttpSession session) {
+		session.invalidate();
+		return session;
+	 } 
 }

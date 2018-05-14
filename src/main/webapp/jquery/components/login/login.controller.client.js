@@ -24,7 +24,8 @@
 
     function handleResponse(reponse) {
         if(reponse.status === 200) {
-            alert("Route to login!");
+            //var logInUser = userService.findUserByID(432);
+            window.location.href = "../profile/profile.template.client.html";
         }
         else {
             alert("Invalid credentials!");
