@@ -38,18 +38,29 @@ public class UserService {
 		} 
     }  
 	
+	@GetMapping("api/user/{userID}")
+	public User findUserByID(@PathVariable("userID") int userID) {
+		Optional<User> res = repository.findById(userID);
+		if(res.isPresent()) {
+			return res.get();
+		}
+		else {
+			return null;
+		}
+	}
+	
 	
 	@PostMapping("/api/register")
 	public User register(@RequestBody User user, HttpSession session) {
-		try {
+		//try {
 			this.findUserByUsername(user.getUsername());
 			this.createUser(user);
 			session.setAttribute("user", user);
 			return user;
-		}
-		catch (IllegalArgumentException e) {
-			throw new IllegalArgumentException(e.getMessage() + " Cannot register");
-		}
+//		}
+//		catch (IllegalArgumentException e) {
+//			throw new IllegalArgumentException(e.getMessage() + " Cannot register");
+//		}
 	}
 
 	
@@ -62,18 +73,7 @@ public class UserService {
 	public void deleteUser(@PathVariable("userID") int userID) {
 		repository.deleteById(userID);
 	}
-	
-	@GetMapping("api/user/{userID}")
-	public User findUserByID(@PathVariable("userID") int userID) {
-		Optional<User> res = repository.findById(userID);
-		if(res.isPresent()) {
-			return res.get();
-		}
-		else {
-			return null;
-		}
-	}
-	
+
 	
 	@PutMapping("api/profile")
 	public User updateUser(@RequestBody User newUser,

@@ -82,13 +82,20 @@
     //     }
     // }
 
-
-    function handleResponse(reponse) {
-        if(reponse.status === 200) {
-            alert("Successfully signed up!");
+    function handleResponse(response) {
+        if(response.status != 200) {
+            alert("fail");
         }
         else {
-            alert("Username already exists!");
+            alert("done");
         }
+    }
+
+    function success() {
+            alert("Successfully signed up!");
+    }
+
+    function error() {
+            alert("Username already exists!");
     }
 })();
