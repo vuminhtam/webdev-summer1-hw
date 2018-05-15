@@ -6,15 +6,13 @@
     var $DOB;
     var $password;
     var $updateBtn, $logoutBtn;
-    var $uid;
-    //var $success;
     var testID = 432;
-    var curUsername;
+    var curUserID;
 
     function init() {
-        curUsername = getUrlVars()["username"];
-        //findUserByID(testID);
-        findUserByUsername(curUsername);
+        curUserID = getUrlVars()["uid"];
+        findUserByID(curUserID);
+        //findUserByUsername(curUsername);
         //$success = $("#alert").attr('hidden', true);
         $firstName = $("#firstName");//fetch $ the element whose id # is firstName
         $email = $("#email");
@@ -43,8 +41,6 @@
 
     //render the user profile
     function renderUser(user) {
-        var firstname = user.firstName;
-        $uid =  user.id;
         $userName.val(user.username);
         $firstName.val(user.firstName);
         $lastName.val(user.lastName);
