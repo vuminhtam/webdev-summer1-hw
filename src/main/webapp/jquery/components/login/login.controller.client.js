@@ -22,13 +22,25 @@
         }
     }
 
+    //get the info of user from database
+    function getIDbyUsername(username) {
+        return userService.findUserByUsername(username)
+            .then(function(user) {
+                renderProfile(user.id);
+            });
+    }
+
     function handleResponse(reponse) {
         if(reponse.status === 200) {
-            //var logInUser = userService.findUserByID(432);
-            window.location.href = "../profile/profile.template.client.html?username=" + $usernameFld.val();
+            var username = $usernameFld.val();
+            getIDbyUsername(username);
         }
         else {
             alert("Invalid credentials!");
         }
+    }
+
+    function renderProfile(id) {
+        window.location.href = "../profile/profile.template.client.html?uid=" + id;
     }
 })();

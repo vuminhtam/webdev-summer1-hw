@@ -90,8 +90,11 @@
 
     function updateUser(event) {
         console.log('edit user by admin');
-        //get info = grab username att in button
-
+        //get info = grab id att in button
+        var btn = $(event.currentTarget);
+        var row = btn.parent().parent();
+        var userID = row.attr('id'); //get id
+        window.location.href = "../profile/profile.template.client.html?uid=" + userID;
     }
 
     function formatPW(password) {

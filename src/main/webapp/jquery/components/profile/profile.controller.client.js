@@ -6,6 +6,7 @@
     var $DOB;
     var $password;
     var $updateBtn, $logoutBtn;
+    var $uid;
     //var $success;
     var testID = 432;
     var curUsername;
@@ -43,6 +44,7 @@
     //render the user profile
     function renderUser(user) {
         var firstname = user.firstName;
+        $uid =  user.id;
         $userName.val(user.username);
         $firstName.val(user.firstName);
         $lastName.val(user.lastName);

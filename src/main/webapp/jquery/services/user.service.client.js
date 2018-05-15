@@ -25,9 +25,18 @@ function UserServiceClient() {
         });
     }
 
+    //return a user info by their id
+    function findUserByID(userID) {
+        return fetch(self.url + '/' + userID)//default = get
+            .then(function(response) {
+                return response.json();
+            });
+    }
+
     //look up a user by username
     function findUserByUsername(username) {
-        return fetch(self.findUsernameURL + '/' + username)
+        var url = "http://localhost:8080/api/findByUsername/" + username;
+        return fetch(url)
             .then(function(response) {
                 return response.json();
             });
@@ -69,13 +78,7 @@ function UserServiceClient() {
             method: 'delete'})
     }
 
-    //return a user info by their id
-    function findUserByID(userID) {
-        return fetch(self.url + '/' + userID)//default = get
-            .then(function(response) {
-                return response.json();
-            });
-    }
+
 
     //update the info of the user
     function updateUser(user) {
