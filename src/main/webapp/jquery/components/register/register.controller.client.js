@@ -82,12 +82,22 @@
     //     }
     // }
 
+    function error(r) {
+        alert(r.message);
+    }
+
     function handleResponse(response) {
-        if(response.status != 200) {
+        if(response.status === 500) {
             alert(response.message);
         }
         else {
-            alert('success');
+            alert('Created user!');
+            renderProfile(response.id);
+
         }
+    }
+
+    function renderProfile(id) {
+        window.location.href = "../profile/profile.template.client.html?uid=" + id;
     }
 })();

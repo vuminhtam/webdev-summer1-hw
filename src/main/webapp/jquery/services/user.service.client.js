@@ -53,7 +53,7 @@ function UserServiceClient() {
                 'content-type': 'application/json' //notify the server to know the post file is json
             }
         }).then(function(response) {
-            return response.json();
+           return response.json();
         });
     }
 

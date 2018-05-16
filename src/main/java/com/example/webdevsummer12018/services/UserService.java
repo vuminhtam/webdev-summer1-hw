@@ -102,9 +102,9 @@ public class UserService {
 //		if(session.getAttribute("user") == null)  {
 //			throw new IllegalArgumentException("Not logged in user.");
 //		} else 
-			if (((User) session.getAttribute("user")).getId() != newUser.getId()) {
-			throw new IllegalArgumentException("Interal Error: not legit user");
-		}
+//			if (((User) session.getAttribute("user")).getId() != newUser.getId()) {
+//			throw new IllegalArgumentException("Interal Error: not legit user");
+//		}
 		User retrieve = this.findUserByID(newUser.getId());
 		if(retrieve.equals(null)) {
 			throw new IllegalArgumentException("Interal Error: cannot find user");
