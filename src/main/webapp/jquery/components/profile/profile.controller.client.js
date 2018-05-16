@@ -98,13 +98,13 @@
     }
 
     function logout() {
-        userService.logout()
-            .then(function(response) {
-                if(response.status == 200) {
-                    window.location.href = "../login/login.template.client.html";
-                }
-            });
-
+        // userService.logout()
+        //     .then(function(response) {
+        //         if(response.status == 200) {
+        //             window.location.href = "../login/login.template.client.html";
+        //         }
+        //     });
+        window.location.href = "../login/login.template.client.html";
     }
 
 

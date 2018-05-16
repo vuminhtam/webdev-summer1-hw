@@ -117,8 +117,11 @@ public class UserService {
 			retrieve.setPhone(newUser.getPhone());
 			retrieve.setRole(newUser.getRole());
 			retrieve.setDOB(newUser.getDOB());
-			repository.save(retrieve);
-			session.setAttribute("user", retrieve);
+			newUser.setId(retrieve.getId());
+			System.out.println(retrieve.getFirstName());
+			repository.deleteById(retrieve.getId());
+			repository.save(newUser);
+			//session.setAttribute("user", retrieve);
 			return retrieve;//return the modified user
 		}
 	}
@@ -137,7 +140,7 @@ public class UserService {
 	
 	@PostMapping("/api/logout")  
 	 public HttpSession logout(HttpSession session) {
-		session.invalidate();
+		//session.invalidate();
 		return session;
 	 } 
 }
