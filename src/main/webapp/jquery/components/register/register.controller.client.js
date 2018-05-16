@@ -84,18 +84,10 @@
 
     function handleResponse(response) {
         if(response.status != 200) {
-            alert("fail");
+            alert(response.message);
         }
         else {
-            alert("done");
+            alert('success');
         }
-    }
-
-    function success() {
-            alert("Successfully signed up!");
-    }
-
-    function error() {
-            alert("Username already exists!");
     }
 })();
