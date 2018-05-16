@@ -26,7 +26,8 @@
     function getIDbyUsername(username) {
         return userService.findUserByUsername(username)
             .then(function(user) {
-                renderProfile(user.id);
+                //window.location.href = "../profile/profile.template.client.html?uid=" + user.id;
+                renderProfile(user[0].id);
             });
     }
 

@@ -105,8 +105,9 @@ public class UserService {
 //			if (((User) session.getAttribute("user")).getId() != newUser.getId()) {
 //			throw new IllegalArgumentException("Interal Error: not legit user");
 //		}
+		System.out.println(newUser.getId());
 		User retrieve = this.findUserByID(newUser.getId());
-		if(retrieve.equals(null)) {
+		if(retrieve == null) {
 			throw new IllegalArgumentException("Interal Error: cannot find user");
 		}
 		else {
@@ -118,9 +119,7 @@ public class UserService {
 			retrieve.setRole(newUser.getRole());
 			retrieve.setDOB(newUser.getDOB());
 			newUser.setId(retrieve.getId());
-			System.out.println(retrieve.getFirstName());
-			repository.deleteById(retrieve.getId());
-			repository.save(newUser);
+			repository.save(retrieve);
 			//session.setAttribute("user", retrieve);
 			return retrieve;//return the modified user
 		}

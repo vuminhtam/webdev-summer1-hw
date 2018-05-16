@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Profile</title>
+
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <!------ Include the above in your HEAD tag ---------->
+
+</head>
+<body>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
+      <A href="/">Home</A>
+      <br>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">Sheena Shrestha</h3>
+        </div>
+
+        <div class="panel-body">
+
+          <div class="row">
+            <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="../../../img/user.png" class="img-circle img-responsive"> </div>
+
+            <div class=" col-md-9 col-lg-9 ">
+              <table class="table table-user-information">
+                <tbody>
+
+                <form>
+                  <div class="form-group row">
+                    <label for="userName" class="col-sm-2 col-form-label">Username</label>
+                    <div class="col-sm-10">
+                      <input type="text" readonly class="form-control-plaintext" id="userName" placeholder="UserName">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-10">
+                      <input type="password" readonly class="form-control-plaintext" id="inputPassword" placeholder="Password">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="firstName" class="col-sm-2 col-form-label">
+                      First Name
+                    </label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control"
+                             id="firstName" placeholder="null">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="lastName" class="col-sm-2 col-form-label">
+                      Last Name
+                    </label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control"
+                             id="lastName" placeholder="null">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="email" class="col-sm-2 col-form-label">
+                      Email
+                    </label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control"
+                             id="email" placeholder="null">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="phone" class="col-sm-2 col-form-label">
+                      Phone number
+                    </label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control"
+                             id="phone" placeholder="null">
+                    </div>
+                  </div>
+
+
+                  <div class="form-group row">
+                    <label for="role" class="col-sm-3 control-label">Role</label>
+                    <div class="col-sm-9">
+                      <select id="role" class="form-control">
+                        <option>Student</option>
+                        <option>Admin</option>
+                        <option>Faculty</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="birthDate" class="col-sm-3 control-label">Date of Birth</label>
+                    <div class="col-sm-9">
+                      <input type="date" id="birthDate" class="form-control">
+                    </div>
+                  </div>
+
+                  <button id = "updateBtn"
+                          type="button"
+                          class="btn btn-primary btn-block">Update</button>
+                </form>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 panel-footer">
+                    <span class="pull-right">
+                        <!--<button id = "logoutBtn"-->
+                      <!--type="button"-->
+                      <!--class="btn btn-danger btn-block">Log out</button>-->
+                            <a id = "logoutBtn"
+                               type="button"
+                               href="/"
+                               data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-log-out"></i></a>
+                        </span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--<meta charset="UTF-8">-->
+<!--<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"/>-->
+<!--<title>User Profile</title>-->
+  <!--<script-->
+          <!--src="https://code.jquery.com/jquery-3.3.1.min.js"-->
+          <!--integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="-->
+          <!--crossorigin="anonymous"></script>-->
+
+  <!--<link href="profile.style.client.css" rel="stylesheet" />-->
+  <!--<script src="../../services/user.service.client.js"></script>-->
+  <!--<script src="profile.controller.client.js"></script>-->
+
+<!--</head>-->
+<!--<body>-->
+  <!--<div class="container">-->
+    <!--<h1 id="title">USER PROFILE</h1>-->
+
+    <!--<form>-->
+      <!--<div class="form-group row">-->
+        <!--<label for="userName" class="col-sm-2 col-form-label">Username</label>-->
+        <!--<div class="col-sm-10">-->
+          <!--<input type="text" readonly class="form-control-plaintext" id="userName" placeholder="UserName">-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="form-group row">-->
+        <!--<label for="inputPassword" class="col-sm-2 col-form-label">Password</label>-->
+        <!--<div class="col-sm-10">-->
+          <!--<input type="password" readonly class="form-control-plaintext" id="inputPassword" placeholder="Password">-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="form-group row">-->
+        <!--<label for="firstName" class="col-sm-2 col-form-label">-->
+          <!--First Name-->
+        <!--</label>-->
+        <!--<div class="col-sm-10">-->
+          <!--<input type="text" class="form-control"-->
+                 <!--id="firstName" placeholder="null">-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="form-group row">-->
+        <!--<label for="lastName" class="col-sm-2 col-form-label">-->
+          <!--Last Name-->
+        <!--</label>-->
+        <!--<div class="col-sm-10">-->
+          <!--<input type="text" class="form-control"-->
+                 <!--id="lastName" placeholder="null">-->
+        <!--</div>-->
+      <!--</div>-->
+
+      <!--<div class="form-group row">-->
+        <!--<label for="email" class="col-sm-2 col-form-label">-->
+          <!--Email-->
+        <!--</label>-->
+        <!--<div class="col-sm-10">-->
+          <!--<input type="text" class="form-control"-->
+                 <!--id="email" placeholder="null">-->
+        <!--</div>-->
+      <!--</div>-->
+
+      <!--<div class="form-group row">-->
+        <!--<label for="phone" class="col-sm-2 col-form-label">-->
+          <!--Phone number-->
+        <!--</label>-->
+        <!--<div class="col-sm-10">-->
+          <!--<input type="text" class="form-control"-->
+                 <!--id="phone" placeholder="null">-->
+        <!--</div>-->
+      <!--</div>-->
+
+
+      <!--<div class="form-group row">-->
+        <!--<label for="role" class="col-sm-3 control-label">Role</label>-->
+        <!--<div class="col-sm-9">-->
+          <!--<select id="role" class="form-control">-->
+            <!--<option>Student</option>-->
+            <!--<option>Admin</option>-->
+            <!--<option>Faculty</option>-->
+          <!--</select>-->
+        <!--</div>-->
+      <!--</div>-->
+
+      <!--<div class="form-group row">-->
+        <!--<label for="birthDate" class="col-sm-3 control-label">Date of Birth</label>-->
+        <!--<div class="col-sm-9">-->
+          <!--<input type="date" id="birthDate" class="form-control">-->
+        <!--</div>-->
+      <!--</div>-->
+
+      <!--<button id = "updateBtn"-->
+              <!--type="button"-->
+              <!--class="btn btn-primary btn-block">Update</button>-->
+      <!--<button id = "logoutBtn"-->
+              <!--type="button"-->
+              <!--class="btn btn-danger btn-block">Log out</button>-->
+    <!--</form>-->
+
+  <!--</div>-->
+<!--</body>-->
+<!--</html>-->
