@@ -62,9 +62,17 @@
             role: $role.val(),
             dob: $DOB.val()
         };
-        userService
-            .updateUser(newUser)
-            .then(handleResponse);
+
+        if($usernameFld.val() === ""
+            && $passwordFld.val() === "") {
+            alert("username and password required!");
+        }
+        else {
+            userService
+                .updateUser(newUser)
+                .then(handleResponse);
+        }
+
     }
     //
     // function confirmUserInfo(userID) {

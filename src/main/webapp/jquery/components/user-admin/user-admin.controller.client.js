@@ -29,21 +29,26 @@
         var birthDate = $('#birthDateFld').val;
         var role = $('#roleFld').val();
 
-        //build a user json object
-        var userJS = {
-            username: username,
-            password: password,
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            phone: phone,
-            birthDate: birthDate,
-            role: role
-        };
+        if(username === ""
+            && password === "") {
+            alert("username and password required!");
+        } else {
+            //build a user json object
+            var userJS = {
+                username: username,
+                password: password,
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                phone: phone,
+                birthDate: birthDate,
+                role: role
+            };
 
-        userService
-            .createUser(userJS)//send to the service the new user info
-            .then(findAllUsers)//reload with new user info
+            userService
+                .createUser(userJS)//send to the service the new user info
+                .then(findAllUsers)//reload with new user info
+        }
     }
 
     function findAllUsers() {
@@ -98,11 +103,13 @@
     }
 
     function formatPW(password) {
-        var s = "";
-        for (var i = 0; i < password.length; i++) {
-            s += '*';
+        if(password != null) {
+            var s = "";
+            for (var i = 0; i < password.length; i++) {
+                s += '*';
+            }
+            return s;
         }
-        return s;
     }
 
 })();
