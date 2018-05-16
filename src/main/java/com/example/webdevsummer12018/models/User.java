@@ -19,7 +19,7 @@ public class User {
 	private String phone;
 	private String email;
 	private String role;
-	private Date DOB;
+	private Date dob;
 	
 	public String getPhone() {
 		return phone;
@@ -40,10 +40,10 @@ public class User {
 		this.role = role;
 	}
 	public Date getDOB() {
-		return DOB;
+		return dob;
 	}
 	public void setDOB(Date dOB) {
-		DOB = dOB;
+		dob = dOB;
 	}
 	public int getId() {
 		return id;
