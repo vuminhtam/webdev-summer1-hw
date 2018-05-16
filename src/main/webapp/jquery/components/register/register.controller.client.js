@@ -82,9 +82,6 @@
     //     }
     // }
 
-    function error(r) {
-        alert(r.message);
-    }
 
     function handleResponse(response) {
         if(response.status === 500) {

@@ -54,7 +54,7 @@
     //update the user with the current input when update button clicked
     function updateUser() {
         var newUser = {
-            id: testID,
+            id: curUserID,
             firstName: $firstName.val(),
             lastName: $lastName.val(),
             phone: $phone.val(),
