@@ -46,8 +46,20 @@
             };
 
             userService
-                .createUser(userJS)//send to the service the new user info
+                .register(userJS)//send to the service the new user info
+                .then(handleResponse)
                 .then(findAllUsers)//reload with new user info
+        }
+    }
+
+
+    function handleResponse(response) {
+        if(response.status === 500) {
+            alert(response.message);
+        }
+        else {
+            alert('Created user!');
+            findAllUsers();
         }
     }
 
