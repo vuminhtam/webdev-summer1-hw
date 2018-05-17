@@ -10,11 +10,12 @@ function UserServiceClient() {
     this.login = login;
     this.logout = logout;
 
-    this.profileURL = 'http://localhost:8080/api/profile';
-    this.findUsernameURL = 'http://localhost:8080/api/findByUsername';
-    this.loginURL = 'http://localhost:8080/api/login';
-    this.logoutURL = 'http://localhost:8080/api/logout';
-    this.url = 'http://localhost:8080/api/user';
+    this.registerURL = "/api/register";
+    this.profileURL = '/api/profile';
+    this.findUsernameURL = '/api/findByUsername';
+    this.loginURL = '/api/login';
+    this.logoutURL = '/api/logout';
+    this.url = '/api/user';
     var self = this;
 
     //return all users info in the database
@@ -35,7 +36,7 @@ function UserServiceClient() {
 
     //look up a user by username
     function findUserByUsername(username) {
-        var url = "http://localhost:8080/api/findByUsername/" + username;
+        var url = self.findUsernameURL + '/' + username;
         return fetch(url)
             .then(function(response) {
                 return response.json();
@@ -45,8 +46,7 @@ function UserServiceClient() {
     //register a user
     function register(user) {
         console.log("current register");
-        var registerURL = "http://localhost:8080/api/register";
-        return fetch(registerURL, {
+        return fetch(self.registerURL, {
             method: 'post',
             body: JSON.stringify(user), //convert json to string
             headers: {
