@@ -61,7 +61,7 @@ public class UserService {
 		List<User> query = this.findUserByUsername(user.getUsername());
 		if(query.size() == 0) {
 			this.createUser(user);
-			session.setAttribute("user", user);
+			//session.setAttribute("user", user);
 			return user;
 		}
 		else {
@@ -87,9 +87,16 @@ public class UserService {
 	
 	@PostMapping("/api/user")
 	public User createUser(@RequestBody User user) {
+		formatUser(user);
 		return repository.save(user);
 	}
 	
+	private void formatUser(User user) {
+		if(user.getDOB().equals("")) {
+			user.setDOB(null);
+		}
+	}
+
 	@DeleteMapping("/api/user/{userID}")
 	public void deleteUser(@PathVariable("userID") int userID) {
 		repository.deleteById(userID);
