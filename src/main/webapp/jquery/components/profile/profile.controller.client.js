@@ -21,7 +21,7 @@
         $userName = $("#userName");
         $password = $("#inputPassword");
         $role = $("#role");
-        $DOB = $("#DOB");
+        $DOB = $("#birthDate");
 
         $updateBtn = $("#updateBtn").click(updateUser);
         $logoutBtn = $("#logoutBtn").click(logout)
@@ -62,7 +62,8 @@
             role: $role.val(),
             dob: $DOB.val()
         };
-            userService
+        console.log(newUser.dob);
+        userService
                 .updateUser(newUser)
                 .then(handleResponse);
     }

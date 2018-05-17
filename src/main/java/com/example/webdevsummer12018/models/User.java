@@ -19,7 +19,7 @@ public class User {
 	private String phone;
 	private String email;
 	private String role;
-	private Date dob;
+	private String dob;
 	
 	public String getPhone() {
 		return phone;
@@ -39,10 +39,10 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	public Date getDOB() {
+	public String getDOB() {
 		return dob;
 	}
-	public void setDOB(Date dOB) {
+	public void setDOB(String dOB) {
 		dob = dOB;
 	}
 	public int getId() {

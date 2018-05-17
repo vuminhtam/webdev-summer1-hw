@@ -26,11 +26,12 @@
         var lastName = $('#lastNameFld').val();
         var email = $('#emailFld').val();
         var phone = $('#phoneFld').val();
-        var birthDate = $('#birthDateFld').val;
+        var $DOB = $("#birthDate");
+        console.log(birthDate);
         var role = $('#roleFld').val();
 
         if(username === ""
-            && password === "") {
+            || password === "") {
             alert("username and password required!");
         } else {
             //build a user json object
@@ -41,7 +42,7 @@
                 lastName: lastName,
                 email: email,
                 phone: phone,
-                birthDate: birthDate,
+                dob: $DOB.val(),
                 role: role
             };
 
