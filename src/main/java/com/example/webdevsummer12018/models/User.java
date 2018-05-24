@@ -1,11 +1,13 @@
 package com.example.webdevsummer12018.models;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -20,7 +22,21 @@ public class User {
 	private String email;
 	private String role;
 	private String dob;
+	@OneToMany(mappedBy="owner")
+    private List<Course> courses;
 	
+	public String getDob() {
+		return dob;
+	}
+	public void setDob(String dob) {
+		this.dob = dob;
+	}
+	public List<Course> getCourses() {
+		return courses;
+	}
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
+	}
 	public String getPhone() {
 		return phone;
 	}
