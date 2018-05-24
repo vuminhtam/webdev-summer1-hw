@@ -38,18 +38,7 @@ public class UserService {
 //			throw new IllegalArgumentException(username + " already exisits!");
 //		} 
 //    }  
-	
-	@GetMapping("api/user/{userID}/courses")
-	public List<Course> findCoursesByUID(@PathVariable("userID") int userID) {
-		Optional<User> res = repository.findById(userID);
-		if(res.isPresent()) {
-			User user = res.get();
-			return user.getCourses();
-		}
-		else {
-			throw new IllegalArgumentException("User " + userID + "not found");
-		}
-	}
+
 	
 	@GetMapping("api/user/{userID}")
 	public User findUserByID(@PathVariable("userID") int userID) {
