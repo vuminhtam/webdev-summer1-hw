@@ -114,7 +114,6 @@ public class UserService {
 //			if (((User) session.getAttribute("user")).getId() != newUser.getId()) {
 //			throw new IllegalArgumentException("Interal Error: not legit user");
 //		}
-		System.out.println(newUser.getId());
 		User retrieve = this.findUserByID(newUser.getId());
 		if(retrieve == null) {
 			throw new IllegalArgumentException("Interal Error: cannot find user");
