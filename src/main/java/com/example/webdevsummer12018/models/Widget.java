@@ -28,7 +28,6 @@ public class Widget {
 	@JsonIgnore
 	private Topic topic;
 	
-	
 	public Topic getTopic() {
 		return topic;
 	}

@@ -78,6 +78,11 @@ public class TopicService {
 		return null;		
 	}
 	
+	@GetMapping("/api/topic")
+	public List<Topic> findAllTopic() {
+		return (List<Topic>) topicRepository.findAll();		
+	}
+	
 	@DeleteMapping("/api/topic/{id}")
 	public void deleteTopic(@PathVariable("id") int id) {
 		topicRepository.deleteById(id);

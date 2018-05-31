@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.sql.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,7 +24,7 @@ public class User {
 	private String email;
 	private String role;
 	private String dob;
-	@OneToMany(mappedBy="owner")
+	@OneToMany(mappedBy="owner", cascade = CascadeType.ALL, orphanRemoval=true)
 	@JsonIgnore
     private List<Course> courses;
 	

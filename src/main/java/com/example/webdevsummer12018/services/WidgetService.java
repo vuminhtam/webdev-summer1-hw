@@ -42,7 +42,7 @@ public class WidgetService {
 			return topic.getWidgets();
 		}
 		else {
-			throw new IllegalArgumentException("Cannot find lesson");
+			throw new IllegalArgumentException("Cannot find topic " + tid);
 		}
 	}
 	
