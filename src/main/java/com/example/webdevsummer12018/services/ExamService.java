@@ -58,4 +58,9 @@ public class ExamService {
 		}
 		return null;
 	}
+	
+	@GetMapping("/api/exam")
+	public Iterable<Exam> findAllExam() {
+		return examRepository.findAll();
+	}
 }
