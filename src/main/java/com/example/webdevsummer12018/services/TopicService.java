@@ -35,7 +35,7 @@ public class TopicService {
 	TopicRepository topicRepository;
 	
 	@GetMapping("/api/course/{cid}/module/{mid}/lesson/{lid}/topic")
-	public List<Topic> findAllLessonsForModule(
+	public List<Topic> findAllTopicsForLesson(
 			@PathVariable("cid") int cid,
 			@PathVariable("mid") int mid,
 			@PathVariable("lid") int lid) {
