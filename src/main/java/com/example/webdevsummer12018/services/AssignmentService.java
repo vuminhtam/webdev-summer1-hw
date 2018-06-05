@@ -69,13 +69,10 @@ public class AssignmentService {
 	public void createAssignmentForTopic(
 			@PathVariable("id") int id,
 			@RequestBody Assignment assignment) {
-		System.out.println("ADDDING");
-
 		Optional<Topic> res = topicRepository.findById(id);
 		if(res.isPresent()) {
 			Topic topic = res.get();
 			assignment.setTopic(topic);
-			System.out.println(assignment.getTitle());
 			assignmentRepository.save(assignment);
 		}
 		else {
