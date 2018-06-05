@@ -54,7 +54,7 @@ public class AssignmentService {
 			Topic topic = res.get();
 			List<Assignment> assignments = new ArrayList<Assignment>();
 			for(Widget w: topic.getWidgets()) {
-				if(w.getWidgetType().equals("Assignment") || w instanceof Assignment) {
+				if(w.getWidgetType() != null && w.getWidgetType().equals("Assignment") || w instanceof Assignment) {
 					assignments.add((Assignment) w);
 				}
 			}

@@ -101,8 +101,8 @@ public class ExamService {
 		}
 	}
 	
-	@DeleteMapping("/api/assignment/{id}")
-	public void deleteWidgetByID(@PathVariable("id") int id) {
+	@DeleteMapping("/api/exam/{id}")
+	public void deleteExamByID(@PathVariable("id") int id) {
 		examRepository.deleteById(id);
 	}
 	

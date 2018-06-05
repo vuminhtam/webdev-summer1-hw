@@ -19,6 +19,10 @@ public class Question {
 	private String title;
 	private String subtitle;
 	private String type;
+	private int points;
+	private String description;
+	private String instructions;
+	
 	@ManyToOne
 	@JsonIgnore
 	private Exam exam;
@@ -46,7 +50,6 @@ public class Question {
 	public void setPoints(int points) {
 		this.points = points;
 	}
-	private int points;
 	public String getType() {
 		return type;
 	}
@@ -58,5 +61,17 @@ public class Question {
 	}
 	public void setExam(Exam exam) {
 		this.exam = exam;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getInstructions() {
+		return instructions;
+	}
+	public void setInstructions(String instructions) {
+		this.instructions = instructions;
 	}
 }
