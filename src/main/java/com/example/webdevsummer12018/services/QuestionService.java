@@ -241,6 +241,7 @@ public class QuestionService {
 		if(res.isPresent()) {
 			Optional<MultipleChoiceQuestion> retrieve = mutiRepo.findById(qid);
 			if(retrieve.isPresent()) {
+				System.out.println(newQuestion.getOptions());
 				mutiRepo.deleteById(qid);
 				newQuestion.setId(qid);
 				newQuestion.setExam(res.get());
@@ -278,27 +279,27 @@ public class QuestionService {
 		}
 	}
 	
-	@PostMapping("/api/exam/{eid}/{questionType}/{qid}")
-	public Question updateQuestionByID(
-			@RequestBody Question newQuestion, 
-			@PathVariable("eid") int eid,
-			@PathVariable("questionType") String questionType,
-			@PathVariable("qid") int qid) {
-		Optional<Exam> res = examRepository.findById(eid);
-		if(res.isPresent()) {
-			Optional<Question> retrieve = questionRepository.findById(qid);
-			if(retrieve.isPresent()) {
-				questionRepository.deleteById(qid);
-				newQuestion.setId(qid);
-				newQuestion.setExam(res.get());
-				return questionRepository.save(newQuestion);
-			}
-			else {
-				throw new IllegalArgumentException("Cannot find question " + qid);
-			}
-		}
-		else {
-			throw new IllegalArgumentException("Cannot find widget");
-		}
-	}
+//	@PostMapping("/api/exam/{eid}/{questionType}/{qid}")
+//	public Question updateQuestionByID(
+//			@RequestBody Question newQuestion, 
+//			@PathVariable("eid") int eid,
+//			@PathVariable("questionType") String questionType,
+//			@PathVariable("qid") int qid) {
+//		Optional<Exam> res = examRepository.findById(eid);
+//		if(res.isPresent()) {
+//			Optional<Question> retrieve = questionRepository.findById(qid);
+//			if(retrieve.isPresent()) {
+//				questionRepository.deleteById(qid);
+//				newQuestion.setId(qid);
+//				newQuestion.setExam(res.get());
+//				return questionRepository.save(newQuestion);
+//			}
+//			else {
+//				throw new IllegalArgumentException("Cannot find question " + qid);
+//			}
+//		}
+//		else {
+//			throw new IllegalArgumentException("Cannot find widget");
+//		}
+//	}
 }
