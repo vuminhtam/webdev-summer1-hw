@@ -85,24 +85,27 @@ public class WidgetService {
 			@PathVariable("wid") int id) {
 		Optional<Widget> res = widgetRepository.findById(id);
 		if(res.isPresent()) {
-			Widget retrieve = res.get();
-			if(newWidget.getWidgetType().equals("Heading")) {
-				retrieve.setSize(newWidget.getSize());
-				retrieve.setText(newWidget.getText());
-			} else if(newWidget.getWidgetType().equals("Image")) {
-				retrieve.setSource(newWidget.getSource());
-				retrieve.setText(newWidget.getText());
-			} else if(newWidget.getWidgetType().equals("Link")) {
-				retrieve.setHref(newWidget.getHref());
-				retrieve.setText(newWidget.getText());
-			} else if(newWidget.getWidgetType().equals("Paragraph")) {
-				retrieve.setText(newWidget.getText());
-			} else if(newWidget.getWidgetType().equals("List")) {
-				retrieve.setItems(newWidget.getItems());
-				retrieve.setListType(newWidget.getListType());
-			} 
-			widgetRepository.save(retrieve);
-			return retrieve;
+//			Widget retrieve = res.get();
+//			if(newWidget.getWidgetType().equals("Heading")) {
+//				retrieve.setSize(newWidget.getSize());
+//				retrieve.setText(newWidget.getText());
+//			} else if(newWidget.getWidgetType().equals("Image")) {
+//				retrieve.setSource(newWidget.getSource());
+//				retrieve.setText(newWidget.getText());
+//			} else if(newWidget.getWidgetType().equals("Link")) {
+//				retrieve.setHref(newWidget.getHref());
+//				retrieve.setText(newWidget.getText());
+//			} else if(newWidget.getWidgetType().equals("Paragraph")) {
+//				retrieve.setText(newWidget.getText());
+//			} else if(newWidget.getWidgetType().equals("List")) {
+//				retrieve.setItems(newWidget.getItems());
+//				retrieve.setListType(newWidget.getListType());
+//			} 
+//			widgetRepository.save(retrieve);
+			widgetRepository.deleteById(id);
+			newWidget.setId(id);
+			widgetRepository.save(newWidget);
+			return newWidget;
 		}
 		else {
 			throw new IllegalArgumentException("Cannot find widget");
