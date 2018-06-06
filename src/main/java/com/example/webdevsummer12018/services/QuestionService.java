@@ -185,6 +185,32 @@ public class QuestionService {
 		return questionRepository.findById(id);
 	}
 	
+	
+	@PostMapping("/api/exam/{eid}/truefalse/{qid}")
+	public TrueFalseQuestion updateTFQuestionByID(
+			@RequestBody TrueFalseQuestion newQuestion, 
+			@PathVariable("eid") int eid,
+			@PathVariable("qid") int qid) {
+		Optional<Exam> res = examRepository.findById(eid);
+		if(res.isPresent()) {
+			Optional<TrueFalseQuestion> retrieve = trueFalseRepository.findById(qid);
+			if(retrieve.isPresent()) {
+				trueFalseRepository.deleteById(qid);
+				newQuestion.setId(qid);
+				newQuestion.setExam(res.get());
+				System.out.println("hello");
+				return trueFalseRepository.save(newQuestion);
+			}
+			else {
+				throw new IllegalArgumentException("Cannot find question " + qid);
+			}
+		}
+		else {
+			throw new IllegalArgumentException("Cannot find widget");
+		}
+	}
+	
+	
 	@PostMapping("/api/exam/{eid}/{questionType}/{qid}")
 	public Question updateQuestionByID(
 			@RequestBody Question newQuestion, 
@@ -199,7 +225,6 @@ public class QuestionService {
 				newQuestion.setId(qid);
 				newQuestion.setExam(res.get());
 				return questionRepository.save(newQuestion);
-//				return newQuestion;
 			}
 			else {
 				throw new IllegalArgumentException("Cannot find question " + qid);
