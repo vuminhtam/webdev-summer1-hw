@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.webdevsummer12018.models.Assignment;
+import com.example.webdevsummer12018.models.EssayQuestion;
 import com.example.webdevsummer12018.models.Exam;
 import com.example.webdevsummer12018.models.MultipleChoiceQuestion;
 import com.example.webdevsummer12018.models.Question;
@@ -21,7 +22,9 @@ import com.example.webdevsummer12018.models.Topic;
 import com.example.webdevsummer12018.models.TrueFalseQuestion;
 import com.example.webdevsummer12018.models.Widget;
 import com.example.webdevsummer12018.repositories.AssignmentRepository;
+import com.example.webdevsummer12018.repositories.EssayRepository;
 import com.example.webdevsummer12018.repositories.ExamRepository;
+import com.example.webdevsummer12018.repositories.FillBlankRepository;
 import com.example.webdevsummer12018.repositories.MultipleChoicesQuestionRepository;
 import com.example.webdevsummer12018.repositories.TopicRepository;
 import com.example.webdevsummer12018.repositories.TrueFalseQuestionRepository;
@@ -32,27 +35,12 @@ import com.example.webdevsummer12018.repositories.WidgetRepository;
 public class ExamService {
 	@Autowired
 	ExamRepository examRepository;
-	@Autowired
-	TrueFalseQuestionRepository trueFalseRepository;
-	@Autowired
-	MultipleChoicesQuestionRepository mutiRepo;
 	@Autowired 
 	TopicRepository topicRepository;
 	@Autowired 
 	WidgetRepository widgetRepository;
 
 	
-	@GetMapping("/api/exam/{examId}/question")
-	public List<Question> findAllQuestionsForExam(@PathVariable("examId") int examId) {
-		Optional<Exam> optionalExam = examRepository.findById(examId);
-		if(optionalExam.isPresent()) {
-			Exam exam = optionalExam.get();
-			List<Question> questions = exam.getQuestions();
-			int count = questions.size();
-			return questions;
-		}
-		return null;
-	}
 	
 	@GetMapping("/api/exam")
 	public Iterable<Exam> findAllExam() {
@@ -104,26 +92,5 @@ public class ExamService {
 	@DeleteMapping("/api/exam/{id}")
 	public void deleteExamByID(@PathVariable("id") int id) {
 		examRepository.deleteById(id);
-	}
-	
-	
-	//------------------------------------------------------------------------------------------
-	
-	@GetMapping("/api/multi/{questionId}")
-	public MultipleChoiceQuestion findMultiQuestionById(@PathVariable("questionId") int questionId) {
-		Optional<MultipleChoiceQuestion> optional = mutiRepo.findById(questionId);
-		if(optional.isPresent()) {
-			return optional.get();
-		}
-		return null;
-	}
-
-	@GetMapping("/api/truefalse/{questionId}")
-	public TrueFalseQuestion findTrueFalseQuestionById(@PathVariable("questionId") int questionId) {
-		Optional<TrueFalseQuestion> optional = trueFalseRepository.findById(questionId);
-		if(optional.isPresent()) {
-			return optional.get();
-		}
-		return null;
 	}
 }

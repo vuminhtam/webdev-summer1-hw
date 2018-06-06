@@ -4,7 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.example.webdevsummer12018.models.Exam;
 
-public interface ExamRepository
-extends CrudRepository<Exam, Integer>{
+public interface ExamRepository extends CrudRepository<Exam, Integer>{
 
 }
