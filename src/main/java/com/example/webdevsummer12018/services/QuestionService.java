@@ -198,7 +198,6 @@ public class QuestionService {
 				trueFalseRepository.deleteById(qid);
 				newQuestion.setId(qid);
 				newQuestion.setExam(res.get());
-				System.out.println("hello");
 				return trueFalseRepository.save(newQuestion);
 			}
 			else {
@@ -210,6 +209,74 @@ public class QuestionService {
 		}
 	}
 	
+	@PostMapping("/api/exam/{eid}/essay/{qid}")
+	public EssayQuestion updateEssayQuestionByID(
+			@RequestBody EssayQuestion newQuestion, 
+			@PathVariable("eid") int eid,
+			@PathVariable("qid") int qid) {
+		Optional<Exam> res = examRepository.findById(eid);
+		if(res.isPresent()) {
+			Optional<EssayQuestion> retrieve = essayRepository.findById(qid);
+			if(retrieve.isPresent()) {
+				essayRepository.deleteById(qid);
+				newQuestion.setId(qid);
+				newQuestion.setExam(res.get());
+				return essayRepository.save(newQuestion);
+			}
+			else {
+				throw new IllegalArgumentException("Cannot find question " + qid);
+			}
+		}
+		else {
+			throw new IllegalArgumentException("Cannot find widget");
+		}
+	}
+	
+	@PostMapping("/api/exam/{eid}/choice/{qid}")
+	public MultipleChoiceQuestion updateMCQuestionByID(
+			@RequestBody MultipleChoiceQuestion newQuestion, 
+			@PathVariable("eid") int eid,
+			@PathVariable("qid") int qid) {
+		Optional<Exam> res = examRepository.findById(eid);
+		if(res.isPresent()) {
+			Optional<MultipleChoiceQuestion> retrieve = mutiRepo.findById(qid);
+			if(retrieve.isPresent()) {
+				mutiRepo.deleteById(qid);
+				newQuestion.setId(qid);
+				newQuestion.setExam(res.get());
+				return mutiRepo.save(newQuestion);
+			}
+			else {
+				throw new IllegalArgumentException("Cannot find question " + qid);
+			}
+		}
+		else {
+			throw new IllegalArgumentException("Cannot find widget");
+		}
+	}
+	
+	@PostMapping("/api/exam/{eid}/blanks/{qid}")
+	public FillBlankQuestion updateFillBlankQuestionByID(
+			@RequestBody FillBlankQuestion newQuestion, 
+			@PathVariable("eid") int eid,
+			@PathVariable("qid") int qid) {
+		Optional<Exam> res = examRepository.findById(eid);
+		if(res.isPresent()) {
+			Optional<FillBlankQuestion> retrieve = fillBlankRepository.findById(qid);
+			if(retrieve.isPresent()) {
+				fillBlankRepository.deleteById(qid);
+				newQuestion.setId(qid);
+				newQuestion.setExam(res.get());
+				return fillBlankRepository.save(newQuestion);
+			}
+			else {
+				throw new IllegalArgumentException("Cannot find question " + qid);
+			}
+		}
+		else {
+			throw new IllegalArgumentException("Cannot find widget");
+		}
+	}
 	
 	@PostMapping("/api/exam/{eid}/{questionType}/{qid}")
 	public Question updateQuestionByID(
