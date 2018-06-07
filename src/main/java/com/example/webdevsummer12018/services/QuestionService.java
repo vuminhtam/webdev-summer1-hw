@@ -266,8 +266,9 @@ public class QuestionService {
 			Optional<FillBlankQuestion> retrieve = fillBlankRepository.findById(qid);
 			if(retrieve.isPresent()) {
 				fillBlankRepository.deleteById(qid);
-				newQuestion.setId(qid);
 				newQuestion.setExam(res.get());
+				newQuestion.setId(qid);
+				System.out.println(newQuestion.getTitle());
 				return fillBlankRepository.save(newQuestion);
 			}
 			else {

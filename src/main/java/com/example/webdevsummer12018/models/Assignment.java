@@ -7,9 +7,6 @@ import javax.persistence.Id;
 
 @Entity
 public class Assignment extends Widget {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
 	private String title;
 	private String description;
 	private int score;

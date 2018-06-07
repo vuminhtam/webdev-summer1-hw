@@ -66,14 +66,14 @@ public class AssignmentService {
 	}
 	
 	@PostMapping("/api/topic/{id}/assignment")
-	public void createAssignmentForTopic(
+	public Assignment createAssignmentForTopic(
 			@PathVariable("id") int id,
 			@RequestBody Assignment assignment) {
 		Optional<Topic> res = topicRepository.findById(id);
 		if(res.isPresent()) {
 			Topic topic = res.get();
 			assignment.setTopic(topic);
-			assignmentRepository.save(assignment);
+			return assignmentRepository.save(assignment);
 		}
 		else {
 			throw new IllegalArgumentException("Cannot find topic " + id);
